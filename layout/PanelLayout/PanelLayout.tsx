@@ -20,7 +20,7 @@ const PanelLayout: React.FC<TProps> = ({ children }) => {
   useEffect(() => {
     // if user not login redirect to sign-in
     if (!userEmail) router.push("/auth/sign-in");
-  }, []);
+  }, [userEmail]);
 
   return (
     <PanelLayoutWrapper>

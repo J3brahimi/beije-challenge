@@ -1,5 +1,9 @@
 import Head from "next/head";
 
+// Components
+import SignInForm from "component/Form/SignIn";
+
+// Layout
 import AuthLayout from "layout/AuthLayout";
 
 const SignIn = () => {
@@ -8,7 +12,9 @@ const SignIn = () => {
       <Head>
         <title>BEIJE | Sign-in</title>
       </Head>
-      <AuthLayout>Sign-in form</AuthLayout>
+      <AuthLayout>
+        <SignInForm />
+      </AuthLayout>
     </>
   );
 };

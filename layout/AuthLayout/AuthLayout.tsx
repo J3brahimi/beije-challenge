@@ -20,7 +20,7 @@ const AuthLayout: React.FC<TProps> = ({ children }) => {
   useEffect(() => {
     // if user login redirect to panel
     if (userEmail) router.push("/panel");
-  }, []);
+  }, [userEmail]);
 
   return (
     <AuthLayoutWrapper>
