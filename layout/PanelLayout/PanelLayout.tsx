@@ -9,6 +9,9 @@ import { RootState } from "store/store";
 // Assets
 import { PanelLayoutWrapper } from "./PanelLayout.style";
 
+// Utils
+import { toast } from "react-toastify";
+
 type TProps = {
   children: JSX.Element[] | JSX.Element | string;
 };
@@ -19,8 +22,11 @@ const PanelLayout: React.FC<TProps> = ({ children }) => {
 
   useEffect(() => {
     // if user not login redirect to sign-in
-    if (!userEmail) router.push("/auth/sign-in");
-  }, [userEmail]);
+    if (!userEmail) {
+      toast.error("Access Denied");
+      router.push("/auth/sign-in");
+    }
+  }, []);
 
   return (
     <PanelLayoutWrapper>

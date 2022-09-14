@@ -1,4 +1,5 @@
 import Head from "next/head";
+import { useRouter } from "next/router";
 
 // Layout
 import PanelLayout from "layout/PanelLayout";
@@ -13,11 +14,15 @@ import { RootState, AppDispatch } from "store/store";
 import { setUser } from "store/slices/user.slice";
 
 const Panel = () => {
+  const router = useRouter();
   const dispatch: AppDispatch = useDispatch();
   const userEmail = useSelector((state: RootState) => state.user.email);
 
   const handleLogout = () => {
     dispatch(setUser({ email: "" }));
+
+    // redirect to sign in page
+    router.push("/auth/sign-in");
   };
   return (
     <>

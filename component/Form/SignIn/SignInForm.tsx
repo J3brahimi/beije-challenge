@@ -20,6 +20,7 @@ import { SignInFormWrapper } from "./SignInForm.style";
 
 // Utils
 import errorHandler from "utils/form-errors";
+import { toast } from "react-toastify";
 
 const SignInForm = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -35,7 +36,7 @@ const SignInForm = () => {
 
     setTimeout(() => {
       setLoading(false);
-
+      toast.success("you signed in successfully");
       // set "email" value to global state
       dispatch(setUser({ email: data.email }));
     }, 3000);
