@@ -1,4 +1,4 @@
 import { IUser } from "./user.type";
-import { ISignInForm } from "./form.type";
+import { ISignInForm, ISignUpForm } from "./form.type";
 
-export type { IUser, ISignInForm };
+export type { IUser, ISignInForm, ISignUpForm };

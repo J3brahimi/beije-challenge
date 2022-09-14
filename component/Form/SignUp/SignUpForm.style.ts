@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-export const SignInFormWrapper = styled.form`
+export const SignUpFormWrapper = styled.form`
   text-align: center;
   width: 50%;
   display: flex;

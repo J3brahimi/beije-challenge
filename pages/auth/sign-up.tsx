@@ -4,19 +4,19 @@ import Head from "next/head";
 import AuthLayout from "layout/AuthLayout";
 
 // Components
-import SignInForm from "component/Form/SignIn";
+import SignUpForm from "component/Form/SignUp";
 
-const SignIn = () => {
+const SignUp = () => {
   return (
     <>
       <Head>
-        <title>BEIJE | Sign-in</title>
+        <title>BEIJE | Sign-up</title>
       </Head>
       <AuthLayout>
-        <SignInForm />
+        <SignUpForm />
       </AuthLayout>
     </>
   );
 };
 
-export default SignIn;
+export default SignUp;

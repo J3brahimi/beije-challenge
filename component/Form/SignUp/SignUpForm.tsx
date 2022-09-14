@@ -13,24 +13,24 @@ import { setUser } from "store/slices/user.slice";
 import { AppDispatch } from "store/store";
 
 // Types
-import { ISignInForm } from "model";
+import { ISignUpForm } from "model";
 
 // Assets
-import { SignInFormWrapper } from "./SignInForm.style";
+import { SignUpFormWrapper } from "./SignUpForm.style";
 
 // Utils
 import errorHandler from "utils/form-errors";
 
-const SignInForm = () => {
+const SignUpForm = () => {
   const dispatch: AppDispatch = useDispatch();
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<ISignInForm>();
+  } = useForm<ISignUpForm>();
 
   const [loading, setLoading] = useState<boolean>(false);
-  const onSubmit: SubmitHandler<ISignInForm> = (data) => {
+  const onSubmit: SubmitHandler<ISignUpForm> = (data) => {
     setLoading(true);
 
     setTimeout(() => {
@@ -41,8 +41,18 @@ const SignInForm = () => {
     }, 3000);
   };
   return (
-    <SignInFormWrapper onSubmit={handleSubmit(onSubmit)}>
-      <h2>BEIJE | SIGN-IN</h2>
+    <SignUpFormWrapper onSubmit={handleSubmit(onSubmit)}>
+      <h2>BEIJE | SIGN-UP</h2>
+      <TextField
+        id="outlined-basic"
+        label="Full name"
+        variant="outlined"
+        {...register("name", {
+          required: true,
+        })}
+        error={errors.name !== undefined}
+        helperText={errors.name ? errorHandler.name[errors.name.type] : ""}
+      />
       <TextField
         id="outlined-basic"
         label="Email"
@@ -67,17 +77,17 @@ const SignInForm = () => {
       />
       <div>
         <p>
-          Don&apos;t have account?{" "}
-          <Link href="/auth/sign-up">
-            <a>Sign up</a>
+          have account?{" "}
+          <Link href="/auth/sign-in">
+            <a>Sign in</a>
           </Link>
         </p>
         <Button type="submit" variant="outlined" size="large">
-          {loading ? <BeatLoader color="#efe7dd" size={20} /> : "Sign in"}
+          {loading ? <BeatLoader color="#efe7dd" size={20} /> : "Sign up"}
         </Button>
       </div>
-    </SignInFormWrapper>
+    </SignUpFormWrapper>
   );
 };
 
-export default SignInForm;
+export default SignUpForm;
