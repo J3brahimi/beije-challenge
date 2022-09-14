@@ -82,7 +82,12 @@ const SignUpForm = () => {
             <a>Sign in</a>
           </Link>
         </p>
-        <Button type="submit" variant="outlined" size="large">
+        <Button
+          type="submit"
+          variant="outlined"
+          size="large"
+          disabled={loading}
+        >
           {loading ? <BeatLoader color="#efe7dd" size={20} /> : "Sign up"}
         </Button>
       </div>
