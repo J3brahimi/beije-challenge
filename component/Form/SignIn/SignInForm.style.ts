@@ -2,7 +2,6 @@ import styled from "@emotion/styled";
 
 export const SignInFormWrapper = styled.form`
   text-align: center;
-  width: 50%;
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -22,8 +21,20 @@ export const SignInFormWrapper = styled.form`
       width: 100%;
     }
   }
+`;
 
-  @media (max-width: 900px) {
-    width: 75%;
+export const PasswordInputWrapper = styled.div`
+  position: relative;
+  width: 100%;
+
+  > button {
+    position: absolute;
+    top: 40%;
+    right: 24px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    outline: none;
+    width: fit-content !important;
   }
 `;

@@ -12,7 +12,7 @@ const SignIn = () => {
       <Head>
         <title>BEIJE | Sign-in</title>
       </Head>
-      <AuthLayout>
+      <AuthLayout activeTab="sign-in">
         <SignInForm />
       </AuthLayout>
     </>

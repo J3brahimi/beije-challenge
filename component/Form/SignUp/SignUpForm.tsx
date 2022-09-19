@@ -4,8 +4,8 @@ import Link from "next/link";
 
 // Components
 import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
 import BeatLoader from "react-spinners/BeatLoader";
+import { PrimaryButton } from "component/Button/PrimaryButton.style";
 
 // Redux
 import { useDispatch } from "react-redux";
@@ -42,7 +42,6 @@ const SignUpForm = () => {
   };
   return (
     <SignUpFormWrapper onSubmit={handleSubmit(onSubmit)}>
-      <h2>BEIJE | SIGN-UP</h2>
       <TextField
         id="outlined-basic"
         label="Full name"
@@ -76,20 +75,14 @@ const SignUpForm = () => {
         }
       />
       <div>
-        <p>
-          have account?{" "}
-          <Link href="/auth/sign-in">
-            <a>Sign in</a>
-          </Link>
-        </p>
-        <Button
+        <PrimaryButton
           type="submit"
           variant="outlined"
           size="large"
           disabled={loading}
         >
           {loading ? <BeatLoader color="#efe7dd" size={20} /> : "Sign up"}
-        </Button>
+        </PrimaryButton>
       </div>
     </SignUpFormWrapper>
   );
