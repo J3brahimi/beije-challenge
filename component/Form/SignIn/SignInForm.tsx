@@ -22,6 +22,7 @@ import { BiHide, BiShow } from "react-icons/bi";
 // Utils
 import errorHandler from "utils/form-errors";
 import { toast } from "react-toastify";
+import { PublicApi } from "service/api";
 
 const SignInForm = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -36,12 +37,18 @@ const SignInForm = () => {
   const onSubmit: SubmitHandler<ISignInForm> = (data) => {
     setLoading(true);
 
-    setTimeout(() => {
-      setLoading(false);
-      toast.success("you signed in successfully");
-      // set "email" value to global state
-      dispatch(setUser({ email: data.email }));
-    }, 3000);
+    PublicApi.post("/public/user/auth/login", data)
+      .then((res) => {
+        toast.success("you signed in successfully");
+        // set "email" value to global state
+        dispatch(setUser({ email: res.data?.account?.email }));
+      })
+      .catch((err) => {
+        toast.error("Wrong email or password");
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   };
 
   // handle show password

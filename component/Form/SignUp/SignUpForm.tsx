@@ -21,6 +21,8 @@ import { SignUpFormWrapper } from "./SignUpForm.style";
 
 // Utils
 import errorHandler from "utils/form-errors";
+import { toast } from "react-toastify";
+import { PublicApi } from "service/api";
 
 const SignUpForm = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -34,12 +36,33 @@ const SignUpForm = () => {
   const onSubmit: SubmitHandler<ISignUpForm> = (data) => {
     setLoading(true);
 
-    setTimeout(() => {
-      setLoading(false);
+    const body = {
+      email: data.email,
+      password: data.password,
+      phone: { dialCode: "90", number: "5318425719" },
+      dateOfBirth: "1989-12-31T20:30:00.000Z",
+      firstName: data.name,
+      lastName: data.name,
+      agreementsSignedDate: {
+        kvkk: "2022-09-19T11:00:40.846Z",
+        confidentialityAgreement: "2022-09-19T11:00:33.486Z",
+        membershipAgreement: "2022-09-19T11:00:33.486Z",
+        userConsent: "2022-09-19T11:00:33.486Z",
+      },
+    };
 
-      // set "email" value to global state
-      dispatch(setUser({ email: data.email }));
-    }, 3000);
+    PublicApi.post("/public/user/auth/register", body)
+      .then((res) => {
+        toast.success("you signed up successfully");
+        // set "email" value to global state
+        dispatch(setUser({ email: res.data?.account?.email }));
+      })
+      .catch((err) => {
+        toast.error("Error");
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   };
   return (
     <SignUpFormWrapper onSubmit={handleSubmit(onSubmit)}>
