@@ -5,6 +5,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import TextField from "@mui/material/TextField";
 import BeatLoader from "react-spinners/BeatLoader";
 import { PrimaryButton } from "component/Button/PrimaryButton.style";
+import Loading from "component/Loading";
 
 // Redux
 import { useDispatch } from "react-redux";
@@ -92,6 +93,7 @@ const SignInForm = () => {
           {loading ? <BeatLoader color="#efe7dd" size={20} /> : "Sign in"}
         </PrimaryButton>
       </div>
+      {loading && <Loading />}
     </SignInFormWrapper>
   );
 };
